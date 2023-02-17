@@ -9,8 +9,10 @@
 #include <queue>
 #include <iostream>
 #include <typeinfo>
+//#include <multiset>
 
 using std::vector;
+using std::multiset;
 using std::set;
 using std::list;
 using std::array;
@@ -19,6 +21,7 @@ using std::forward_list;
 using std::queue;
 using std::endl;
 using std::cout;
+using std::forward_list;
 
 
 void insert(int& a)
@@ -37,16 +40,17 @@ void print(int& a)
 int main(void)
 {
     //vector<int> container(10);
-    list<int> container(10);
+    //list<int> container(10);
     //deque<int> container(10);
     queue<int> q_container;
     
     // C++11(not handle)
     //array<int> container;
-    //forward_list<int> container;
+    forward_list<int> container;
     
     //associative container(not handle)
     //set<int> container;
+    //multiset<int> container;
     //map<int> container;
     
     //init queue
