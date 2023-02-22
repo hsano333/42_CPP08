@@ -11,7 +11,9 @@ class MutantStack : public std::stack<T>
 
     public:
 
-        class iterator : public std::iterator<std::forward_iterator_tag, T>
+        /*
+        //class iterator : public std::iterator<std::forward_iterator_tag, T>
+        class iterator : public std::deque<T>::iterator
         {
             private:
                 uintptr_t pos;
@@ -29,12 +31,15 @@ class MutantStack : public std::stack<T>
                 bool operator==(const iterator &iter);
                 T& operator*() const;
         };
+        */
         //typename std::stack<T>::iterator iterator;
         //typename std::stack<T>::iterator itc();
         MutantStack();
         MutantStack(const MutantStack &stack);
         MutantStack& operator=(const MutantStack &stack);
         virtual ~MutantStack();
+        //typedef typename std::iterator<std::forward_iterator_tag, T> iterator;
+        typedef typename std::deque<T>::iterator iterator;
 
         //iterator begin(void);
         iterator begin(void);
@@ -44,13 +49,18 @@ class MutantStack : public std::stack<T>
 };
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const MutantStack<T>& f);
+std::ostream& operator<<(std::ostream& os, const MutantStack<T>& stack);
 template <typename T>
-std::ostream& operator<<(std::ostream& os, MutantStack<T>& f);
+std::ostream& operator<<(std::ostream& os, MutantStack<T>& stack);
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const typename MutantStack<T>::iterator& ite);
+template <typename T>
+std::ostream& operator<<(std::ostream& os, typename MutantStack<T>::iterator& ite);
 
 
 #include "MutantStack.tpp"
-#include "iterator.tpp"
+//#include "iterator.tpp"
 
 
 #endif
