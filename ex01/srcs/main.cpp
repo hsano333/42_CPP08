@@ -9,8 +9,6 @@ int main(void)
     //sp.addNumber(INT_MIN);
     sp.addNumbers();
     std::cout << "size:" << sp.getSize() << std::endl ;
-
-
     std::cout << "sort and print" << std::endl;
     sp.sort_print();
     std::cout << "short:" << sp.shortestSpan() << std::endl;

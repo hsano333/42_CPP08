@@ -1,8 +1,8 @@
-NAME	:= Span
+NAME	:= Mutated_abomination
 LIB	:= ./lib/
 OBJDIR	:= ./obj
 SRCDIR	:= ./srcs/
-SRC	:= main.cpp Span.cpp
+SRC	:= main.cpp 
 ENTRY	:= 
 
 INCS	:= ./include
