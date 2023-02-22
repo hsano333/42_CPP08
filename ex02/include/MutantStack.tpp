@@ -44,47 +44,53 @@ MutantStack<T>& MutantStack<T>::operator=(const MutantStack &stack)
     return (*this);
 }
 
+
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::begin()
 {
-
     return (this->c.begin());
-    //typename std::deque<T>::iterator deque_iterator = this->c.begin();
-    //return static_cast<typename MutantStack<T>::iterator>(deque_iterator);
-    //return reinterpret_cast<typename MutantStack<T>::iterator>(deque_iterator);
-    //return dynamic_cast<typename MutantStack<T>::iterator>(deque_iterator);
-    //return (static_cast<typename MutantStack<T>::iterator>(this->c.begin()));
-    //return *(reinterpret_cast<MutantStack<T>::iterator*>(&(this->c.begin())));
-    //return (static_cast<MutantStack<T>::iterator>(this->c.begin()));
-    //return (this->c.begin());
-    //std::deque<T> deque = reinterpret_cast<std::deque<T> > (this);
-    //return (reinterpret_cast<MutantStack<T>::iterator>(&this->top()));
-    //std::deque<T> *deque = reinterpret_cast<std::deque<T>* > (this->c.begin());
-    //std::deque<T> *deque = reinterpret_cast<std::deque<T>* > (c);
-    //this->iterator.pos = reinterpret_cast<uintptr_t>(&(deque[0]));
-    //return (&(deque[0]));
-    //return (reinterpret_cast<MutantStack<T>::iterator& >(&(deque[0])));
-    //return (dynamic_cast<MutantStack<T>::iterator& >(deque->begin()));
-    //uintptr_t tmp = reinterpret_cast<uintptr_t& >(&(deque->begin()));
-    //
-    //std::cout << "begin test:" << deque->top() << std::endl;
-    //std::cout << "begin test:" << *(deque->begin()) << std::endl;
-    //return (reinterpret_cast<MutantStack<T>::iterator& >(deque[deque->size()-1]));
-    //return (reinterpret_cast<MutantStack<T>::iterator* >(&deque->begin()));
-    //iterator tmp = (reinterpret_cast<MutantStack<T>::iterator& >((deque->begin())));
-    //iterator tmp = (dynamic_cast<MutantStack<T>::iterator* >((deque->begin())));
-    //return (tmp);
 }
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end()
 {
-    //return (this->c.begin());
     return (this->c.end());
-    //return (reinterpret_cast<MutantStack<T>::iterator>(this->c.end()));
-    //std::deque<T> *deque = reinterpret_cast<std::deque<T>* > (this);
-    //this->iterator.pos = reinterpret_cast<uintptr_t>(&(deque[0]));
-    //return (reinterpret_cast<MutantStack<T>::iterator& >(deque[deque->size()-1]));
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::begin() const
+{
+    return (this->c.begin());
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator MutantStack<T>::end() const
+{
+    return (this->c.end());
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin()
+{
+    return (this->c.rbegin());
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rend()
+{
+    return (this->c.rend());
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rbegin() const
+{
+    return (this->c.rbegin());
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const
+{
+    return (this->c.rend());
 }
 
 template <typename T>

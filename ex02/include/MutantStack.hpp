@@ -8,44 +8,24 @@
 template <typename T>
 class MutantStack : public std::stack<T>
 {
-
     public:
-
-        /*
-        //class iterator : public std::iterator<std::forward_iterator_tag, T>
-        class iterator : public std::deque<T>::iterator
-        {
-            private:
-                uintptr_t pos;
-                //iterator pos;
-            public:
-                iterator();
-                ~iterator();
-                iterator(const iterator & iter);
-                iterator& operator=(const iterator & iter);
-                iterator& operator++();
-                iterator& operator++(int n);
-                iterator& operator--();
-                iterator& operator--(int n);
-                bool operator!=(const iterator &iter);
-                bool operator==(const iterator &iter);
-                T& operator*() const;
-        };
-        */
-        //typename std::stack<T>::iterator iterator;
-        //typename std::stack<T>::iterator itc();
         MutantStack();
         MutantStack(const MutantStack &stack);
         MutantStack& operator=(const MutantStack &stack);
         virtual ~MutantStack();
-        //typedef typename std::iterator<std::forward_iterator_tag, T> iterator;
         typedef typename std::deque<T>::iterator iterator;
+        typedef typename std::deque<T>::const_iterator const_iterator;
+        typedef typename std::deque<T>::reverse_iterator reverse_iterator;
+        typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
 
-        //iterator begin(void);
         iterator begin(void);
         iterator end(void);
-    private:
-        //void mypush(iterator iter);
+        const_iterator begin(void) const;
+        const_iterator end(void) const;
+        reverse_iterator rbegin(void);
+        reverse_iterator rend(void);
+        const_reverse_iterator rbegin(void) const;
+        const_reverse_iterator rend(void) const;
 };
 
 template <typename T>
@@ -53,14 +33,13 @@ std::ostream& operator<<(std::ostream& os, const MutantStack<T>& stack);
 template <typename T>
 std::ostream& operator<<(std::ostream& os, MutantStack<T>& stack);
 
+/*
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const typename MutantStack<T>::iterator& ite);
 template <typename T>
 std::ostream& operator<<(std::ostream& os, typename MutantStack<T>::iterator& ite);
+*/
 
 
 #include "MutantStack.tpp"
-//#include "iterator.tpp"
-
-
 #endif

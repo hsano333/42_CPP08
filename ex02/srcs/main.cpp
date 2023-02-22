@@ -97,8 +97,12 @@ int main(void)
     mstack.push(737);
     
     mstack.push(0);
-    MutantStack<int>::iterator it = mstack.begin();
-    MutantStack<int>::iterator ite = mstack.end();
+    //MutantStack<int>::iterator it = mstack.begin();
+    //MutantStack<int>::iterator ite = mstack.end();
+    MutantStack<int>::reverse_iterator it = mstack.rbegin();
+    MutantStack<int>::reverse_iterator ite = mstack.rend();
+    //MutantStack<int>::const_reverse_iterator it = mstack.begin();
+    //MutantStack<int>::const_reverse_iterator ite = mstack.end();
     cout << "test0:" << *it << endl;
     cout << "test1:" << *ite << endl;
     ++it;
