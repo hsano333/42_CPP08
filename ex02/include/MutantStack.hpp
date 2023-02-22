@@ -10,7 +10,6 @@ class MutantStack : public std::stack<T>
 {
 
     public:
-
         class iterator : public std::iterator<std::forward_iterator_tag, T>
         {
             private:

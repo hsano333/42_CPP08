@@ -53,6 +53,8 @@ int main(void)
     mstack.push(0);
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
+    cout << "test:it:" << *it << ", " << &it << endl;
+    cout << "test:ite:" << *ite << ", " << &ite << endl;
     ++it;
     cout << "test0:" << *it << endl;
     --it;

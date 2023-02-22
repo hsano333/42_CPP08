@@ -46,18 +46,20 @@ MutantStack<T>& MutantStack<T>::operator=(const MutantStack &stack)
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::begin()
 {
-    std::deque<int> *deque = reinterpret_cast<std::deque<int>* > (this);
+    std::deque<T> *deque = reinterpret_cast<std::deque<T>* > (this);
     //this->iterator.pos = reinterpret_cast<uintptr_t>(&(deque[0]));
     return (reinterpret_cast<MutantStack<T>::iterator& >(deque[0]));
+    //return (dynamic_cast<MutantStack<T>::iterator& >(deque->begin()));
 }
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end()
 {
     //return (reinterpret_cast<MutantStack<T>::iterator>(&this->top()));
-    std::deque<int> *deque = reinterpret_cast<std::deque<int>* > (this);
+    std::deque<T> *deque = reinterpret_cast<std::deque<T>* > (this);
     //this->iterator.pos = reinterpret_cast<uintptr_t>(&(deque[0]));
     return (reinterpret_cast<MutantStack<T>::iterator& >(deque[deque->size()-1]));
+    //return (reinterpret_cast<MutantStack<T>::iterator >(deque->end()));
 }
 
 template <typename T>
