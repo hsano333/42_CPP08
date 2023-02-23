@@ -39,14 +39,14 @@ void print(int& a)
 
 int main(void)
 {
-    //vector<int> container(10);
+    vector<int> container(10);
     //list<int> container(10);
     //deque<int> container(10);
     queue<int> q_container;
     
     // C++11(not handle)
-    //array<int> container;
-    forward_list<int> container;
+    //array<int, 10> container;
+    //forward_list<int> container;
     
     //associative container(not handle)
     //set<int> container;
