@@ -9,7 +9,7 @@ template <template <typename, typename> class Container>
 bool easyfind_(Container<int, std::allocator<int> > &container, int search)
 {
     if (std::find(container.begin(), container.end(), search) == container.end())
-        throw std::exception();
+        throw std::invalid_argument("Exception:not find");
     return (true);
 }
 
@@ -30,7 +30,7 @@ bool easyfind_(Container<int, std::deque<int> > &container, int search)
 
     }
     if (!result)
-        throw std::exception();
+        throw std::invalid_argument("Exception:not find");
     container = cp;
     return (result);
 }
@@ -52,7 +52,7 @@ bool easyfind_(ContainerA<int, ContainerB<int> > &container, int search)
 
     }
     if (!result)
-        throw std::exception();
+        throw std::invalid_argument("Exception:not find");
     container = cp;
     return (result);
 }
