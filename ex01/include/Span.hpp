@@ -25,14 +25,8 @@ class Span
         Span& operator=(const Span &s);
         void addNumber(int num);
         void addNumbers();
+        //void test();
 
-        //template <template <typename> class Container>
-        //template <template <typename> class Container>
-        //template <typename IT>
-            //template<typename It> 
-        //void addNumbers(It begin, It end);
-        //void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-        //void addNumbers(typename std::iterator<std::forward_iterator_tag, T> begin, typename std::iterator<std::forward_iterator_tag, T> end);
         void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         ssize_t shortestSpan(); 
         ssize_t longestSpan();
