@@ -18,7 +18,7 @@ class Span
         void addNumber(std::pair<int, bool> &num);
 
     public:
-        Span(unsigned int N);
+        Span(size_t N);
         Span();
         virtual ~Span();
         Span(const Span &s);

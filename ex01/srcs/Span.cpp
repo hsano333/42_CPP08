@@ -14,8 +14,11 @@ void init(std::pair<int, bool> pair)
     pair.second= false;
 }
 
-Span::Span(unsigned int N) : N(N), pos(0)
+Span::Span(size_t N) : pos(0)
 {
+    if (N > UINT_MAX)
+        throw std::invalid_argument("Span Constructor Exception: range 0 to UINT_MAX");
+    this->N = N;
     this->item = new std::vector<std::pair<int, bool> >(N);
     for_each(this->item->begin(), this->item->end(), init);
 }

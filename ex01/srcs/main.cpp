@@ -77,6 +77,7 @@ int main(void)
             sp5.addNumber(1);
             sp5.sort_print();
         } catch (std::length_error &e){
+            cout << "Exception Test addNumber()" << endl;
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;
@@ -85,6 +86,7 @@ int main(void)
         try{
             std::cout << "short:" << sp5.shortestSpan() << std::endl;
         } catch (std::out_of_range &e){
+            cout << "Exception Test shortestSpan()" << endl;
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;
@@ -92,12 +94,42 @@ int main(void)
         try{
             std::cout << "long:" << sp5.longestSpan() << std::endl;
         } catch (std::out_of_range &e){
+            cout << "Exception Test longestSpan()" << endl;
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;
         }
 
 
+    }
+    {
+
+        cout << endl << "Test7" << endl;
+        try {
+            Span sp = Span(UINT_MAX + 10u);
+        } catch (std::invalid_argument &e){
+            e.what();
+        }
+        try {
+            Span sp = Span(-1);
+        } catch (std::invalid_argument &e){
+            e.what();
+        }
+    }
+    {
+        /*
+        cout << endl << "Test8" << endl;
+        Span sp = Span(UINT_MAX);
+        sp.addNumbers();
+        std::vector<std::pair<int, bool> >::iterator iter = sp.begin();
+        std::vector<std::pair<int, bool> >::iterator end_iter = sp.end();
+        size_t cnt = 0;
+        for (;iter != end_iter;iter++)
+        {
+            cnt++;
+        }
+        cout << "cnt:" << cnt << endl;
+        */
     }
     //system("leaks Span");
 }
