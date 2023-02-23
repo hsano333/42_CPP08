@@ -57,13 +57,10 @@ bool easyfind_(ContainerA<int, ContainerB<int> > &container, int search)
     return (result);
 }
 
-template <typename T>
-bool easyfind(T &container, int search)
+template <template <typename, typename> class T, typename A>
+bool easyfind(T<int, A> &Container, int search)
 {
-    return (easyfind_(container, search));
-    //if (std::find(container.begin(), container.end(), search) == container.end())
-        //throw std::exception();
-    //return (true);
+    return (easyfind_(Container, search));
 }
 
 #endif
