@@ -33,14 +33,35 @@ void MutantStack<T>::mypush(iterator iter)
 template <typename T>
 MutantStack<T>::MutantStack(const MutantStack &stack)
 {
-    for_each(stack.begin(), stack.end(), this->push);
+    //MutantStack::iterator it;
+    MutantStack::const_iterator begin = stack.begin();
+    MutantStack::const_iterator end = stack.end();
+    for(; begin != end; begin++)
+    {
+        this->push(*begin);
+    }
 }
 
 template <typename T>
 MutantStack<T>& MutantStack<T>::operator=(const MutantStack &stack)
 {
-    for_each(this->begin(), this->end(), this->pop);
-    for_each(stack.begin(), stack.end(), this->push);
+    if (*this != stack)
+    {
+        //MutantStack::iterator it;
+        MutantStack::const_iterator begin = this->begin();
+        MutantStack::const_iterator end = this->end();
+        for(; begin != end; begin++)
+        {
+            this->pop();
+        }
+        begin = stack.begin();
+        end = stack.end();
+        for(; begin != end; begin++)
+        {
+            this->push(*begin);
+        }
+
+    }
     return (*this);
 }
 
@@ -78,6 +99,7 @@ typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin()
 template <typename T>
 typename MutantStack<T>::reverse_iterator MutantStack<T>::rend()
 {
+    std::cout << "rend No.1" << std::endl;
     return (this->c.rend());
 }
 
@@ -90,6 +112,7 @@ typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rbegin() const
 template <typename T>
 typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const
 {
+    std::cout << "rend No.2" << std::endl;
     return (this->c.rend());
 }
 
