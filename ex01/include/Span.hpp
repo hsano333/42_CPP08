@@ -2,14 +2,20 @@
 #define SPAN_H
 
 #include <set>
-#include <list>
+#include <vector>
+#include <iterator>
+#include <utility>
 
 class Span
 {
     private:
         unsigned int N;
         unsigned int pos;
-        std::list<int> *item;
+        std::vector<std::pair<int, bool> > *item;
+
+        std::vector<std::pair<int, bool> >::iterator valid_begin();
+        std::vector<std::pair<int, bool> >::iterator valid_end();
+        void addNumber(std::pair<int, bool> &num);
 
     public:
         Span(unsigned int N);
@@ -19,10 +25,24 @@ class Span
         Span& operator=(const Span &s);
         void addNumber(int num);
         void addNumbers();
+
+        //template <template <typename> class Container>
+        //template <template <typename> class Container>
+        //template <typename IT>
+            //template<typename It> 
+        //void addNumbers(It begin, It end);
+        //void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        //void addNumbers(typename std::iterator<std::forward_iterator_tag, T> begin, typename std::iterator<std::forward_iterator_tag, T> end);
+        void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         ssize_t shortestSpan(); 
         ssize_t longestSpan();
         unsigned int getSize();
         void sort_print(void);
+
+        std::vector<std::pair<int, bool> >::iterator begin() const;
+        std::vector<std::pair<int, bool> >::iterator end() const;
+        std::vector<std::pair<int, bool> >::iterator begin();
+        std::vector<std::pair<int, bool> >::iterator end();
 };
 
 #endif
