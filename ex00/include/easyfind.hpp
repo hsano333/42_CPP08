@@ -6,7 +6,7 @@
 #include <queue>
 
 template <template <typename, typename> class Container>
-bool easyfind(Container<int, std::allocator<int> > &container, int search)
+bool easyfind_(Container<int, std::allocator<int> > &container, int search)
 {
     if (std::find(container.begin(), container.end(), search) == container.end())
         throw std::exception();
@@ -14,7 +14,7 @@ bool easyfind(Container<int, std::allocator<int> > &container, int search)
 }
 
 template <template <typename, typename> class Container>
-bool easyfind(Container<int, std::deque<int> > &container, int search)
+bool easyfind_(Container<int, std::deque<int> > &container, int search)
 {
     Container<int, std::deque<int> > cp;
     int tmp;
@@ -36,7 +36,7 @@ bool easyfind(Container<int, std::deque<int> > &container, int search)
 }
 
 template <template <typename, typename> class ContainerA, template < typename > class ContainerB>
-bool easyfind(ContainerA<int, ContainerB<int> > &container, int search)
+bool easyfind_(ContainerA<int, ContainerB<int> > &container, int search)
 {
     ContainerA<int, ContainerB<int> > cp;
     int tmp;
@@ -55,6 +55,15 @@ bool easyfind(ContainerA<int, ContainerB<int> > &container, int search)
         throw std::exception();
     container = cp;
     return (result);
+}
+
+template <typename T>
+bool easyfind(T &container, int search)
+{
+    return (easyfind_(container, search));
+    //if (std::find(container.begin(), container.end(), search) == container.end())
+        //throw std::exception();
+    //return (true);
 }
 
 #endif
