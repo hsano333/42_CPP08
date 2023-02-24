@@ -9,7 +9,6 @@ using std::endl;
 
 int main(void)
 {
-    /*
     {
         cout << "Test1 " << endl;
         MutantStack<int> mstack;
@@ -44,7 +43,6 @@ int main(void)
         }
         std::stack<int> s(mstack);
     }
-    */
 
 
     /*
@@ -105,7 +103,7 @@ int main(void)
     */
     {
         cout << "Test4:list " << endl;
-        MutantStack<int> mstack;
+        std::list<int> mstack;
         mstack.push_back(5);
         mstack.push_back(17);
         std::cout << mstack.front() << std::endl;
@@ -118,9 +116,9 @@ int main(void)
         mstack.push_back(0);
         cout << "test2" << endl;
         
-        MutantStack<int>::iterator it = mstack.begin();
+        std::list<int>::const_iterator it = mstack.begin();
         cout << "test3" << endl;
-        MutantStack<int>::iterator ite = mstack.end();
+        std::list<int>::const_iterator ite = mstack.end();
         cout << "test4" << endl;
         cout << "test3" << endl;
         ++it;
