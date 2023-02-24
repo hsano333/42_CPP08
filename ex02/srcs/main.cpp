@@ -119,7 +119,9 @@ int main(void)
         cout << "test2" << endl;
         
         MutantStack<int>::iterator it = mstack.begin();
+        cout << "test3" << endl;
         MutantStack<int>::iterator ite = mstack.end();
+        cout << "test4" << endl;
         cout << "test3" << endl;
         ++it;
         --it;
