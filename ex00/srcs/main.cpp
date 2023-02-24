@@ -3,9 +3,9 @@
 #include <map>
 #include <list>
 #include <set>
-#include <array>
+//#include <array>
 #include <deque>
-#include <forward_list>
+//#include <forward_list>
 #include <queue>
 #include <iostream>
 #include <typeinfo>
@@ -15,13 +15,13 @@ using std::vector;
 using std::multiset;
 using std::set;
 using std::list;
-using std::array;
+//using std::array;
 using std::deque;
-using std::forward_list;
+//using std::forward_list;
 using std::queue;
 using std::endl;
 using std::cout;
-using std::forward_list;
+//using std::forward_list;
 
 
 void insert(int& a)

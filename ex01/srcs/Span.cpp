@@ -8,7 +8,7 @@
 using std::cout;
 using std::endl;
 
-void init(std::pair<int, bool> pair)
+void init(std::pair<int, bool> &pair)
 {
     pair.first = 0;
     pair.second= false;

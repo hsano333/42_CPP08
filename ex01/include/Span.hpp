@@ -5,6 +5,8 @@
 #include <vector>
 #include <iterator>
 #include <utility>
+#include <climits>
+#include <cstdio>
 
 class Span
 {
