@@ -31,9 +31,8 @@ void MutantStack<T>::mypush(iterator iter)
 */
 
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack &stack)
+MutantStack<T>::MutantStack(const MutantStack &stack) : std::stack<T>()
 {
-    //MutantStack::iterator it;
     MutantStack::const_iterator begin = stack.begin();
     MutantStack::const_iterator end = stack.end();
     for(; begin != end; begin++)
