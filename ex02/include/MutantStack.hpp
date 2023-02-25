@@ -34,17 +34,20 @@ class MutantStack : public Inherit<T, C>
         typedef typename Iter::const_reverse_iterator const_reverse_iterator;
 
 
-        template < template <typename, typename, typename> class Container>
-        typename Iter::iterator getBeginIte(Container<T, Iter, Inherit<T, std::deque<T> > > &obj);
+        template < template <typename, typename, typename, typename> class Container>
+        typename Iter::iterator getBeginIte(Container<T, Iter, C ,Inherit<T,C> > &obj);
 
-        template < template <typename, typename, typename> class Container>
-        typename Iter::iterator getEndIte(Container<T, Iter, Inherit<T, std::deque<T> > > &obj);
+        template < template <typename, typename, typename, typename> class Container>
+        typename Iter::iterator getEndIte(Container<T, Iter, Inherit<T, C> ,Inherit<T,C> > &obj);
+
+        /*
 
         template < template <typename, typename, typename> class Container>
         typename Iter::iterator getBeginIte(Container<T, Iter, Inherit<T, std::allocator<T> > > &obj);
 
         template < template <typename, typename, typename> class Container>
         typename Iter::iterator getEndIte(Container<T, Iter, Inherit<T, std::allocator<T> > > &obj);
+        */
 
         /*
         template < template <typename, typename, typename> class Container>

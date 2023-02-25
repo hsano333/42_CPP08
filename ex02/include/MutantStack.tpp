@@ -105,8 +105,8 @@ void MutantStack<T, Iter,C, Inherit >::Test(Container<T, Iter > &obj)
 
 
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
-template < template <typename, typename, typename> class Container>
-typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, Iter, Inherit<T, std::deque<T> > > &obj)
+template < template <typename, typename, typename, typename> class Container>
+typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, Iter, C, Inherit<T,C> > &obj)
 {
     if (&obj == this)
         return (this->c.begin());
@@ -114,8 +114,18 @@ typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inher
 }
 
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
-template < template <typename, typename, typename> class Container>
-typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, Iter, Inherit<T,C>> &obj)
+template < template <typename, typename, typename, typename> class Container>
+typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, Iter, Inherit<T, C>, Inherit<T,C> > &obj)
+{
+    if (&obj == this)
+        return (this->c.end());
+    return (this->c.end());
+}
+
+/*
+template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
+template < template <typename, typename, typename, typename> class Container>
+typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, Iter, Inherit<T,C> , Inherit<T, C> > &obj)
 {
     if (&obj == this)
         return Iter::begin();
@@ -123,8 +133,8 @@ typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inher
 }
 
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
-template < template <typename, typename, typename> class Container>
-typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, std::deque<T>, std::stack<T> > &obj)
+template < template <typename, typename, typename, typename> class Container>
+typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, Iter, Inherit<T, C> ,Inherit<T,C> > &obj)
 {
     if (&obj == this)
         return (this->c.end());
@@ -132,13 +142,15 @@ typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inher
 }
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
 template < template <typename, typename, typename> class Container>
-typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, Iter, Inherit<T,C>> &obj)
+typename MutantStack<T, Iter,C, Inherit >::iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, Iter, Inherit<T,C> > &obj)
 {
     if (&obj == this)
         return Iter::end();
     return Iter::end();
 }
+*/
 
+/*
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj) const
@@ -150,7 +162,7 @@ typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C,
 
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
 template < template <typename, typename, typename> class Container>
-typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, Iter, Inherit<T,C>> &obj) const
+typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C, Inherit >::getBeginIte(Container<T, Iter, Inherit<T,C> > &obj) const
 {
     if (&obj == this)
         return Iter::begin();
@@ -167,12 +179,13 @@ typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C,
 }
 template <typename T, class Iter, typename C,  template <class A, class B> class Inherit >
 template < template <typename, typename, typename> class Container>
-typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, Iter, Inherit<T,C>> &obj) const
+typename MutantStack<T, Iter,C, Inherit >::const_iterator MutantStack<T, Iter,C, Inherit >::getEndIte(Container<T, Iter, Inherit<T,C> > &obj) const
 {
     if (&obj == this)
         return Iter::end();
     return Iter::end();
 }
+*/
 
 
 
