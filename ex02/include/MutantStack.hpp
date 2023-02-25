@@ -7,31 +7,16 @@
 #include <iostream>
 #include <climits>
 
-//template <typename T, template <typename, typename> class Container>
-//template <typename T, class Iter = std::list<T, std::allocator<T> >, class Inherit = std::list<T> >
 template <typename T, class Iter = std::deque<T>, class Inherit = std::stack<T> >
-//template <typename T>
-//template <typename T, class Iter = std::list<T>, class Inherit = std::list<T> >
 class MutantStack : public Inherit 
 {
     private:
-        void TTest();
-        //template < template <typename, typename, typename> class Container>
         void copys(MutantStack<T, std::deque<T>, std::stack<T> > &dst, MutantStack<T, std::deque<T>, std::stack<T> > const &src);
-
-        //template < template <typename, typename, typename> class MutantStack>
         void copys(MutantStack<T, Iter, Iter> &dst, MutantStack<T, Iter, Iter> const &src);
 
         void clear(MutantStack<T, std::deque<T>, std::stack<T> > &dst);
         void clear(MutantStack<T, Iter, Iter> &dst);
 
-        /*
-        template < template <typename, typename, typename> class Container>
-        void clear(Container<T, std::deque<T>, std::stack<T> > &obj);
-
-        template < template <typename, typename, typename> class Container>
-        void clear(Container<T, Iter, Iter> &obj);
-        */
     public:
         MutantStack();
         MutantStack(const MutantStack &stack);
@@ -95,49 +80,10 @@ class MutantStack : public Inherit
         template < template <typename, typename, typename> class Container>
         typename Iter::const_reverse_iterator getREndIte(Container<T, Iter, Iter> &obj) const;
 
-        /*
-        template <template <typename, typename> class Container>
-        typename Iter::const_iterator getBeginIte(Container<T, Iter > &obj) const;
-        template <template <typename, typename> class Container>
-        typename Iter::const_iterator getBeginIte(Container<T, std::allocator<T> > &obj) const;
-        template <template <typename, typename> class Container>
-        typename Iter::const_iterator getEndIte(Container<T, Iter > &obj) const;
-        template <template <typename, typename> class Container>
-        typename Iter::const_iterator getEndIte(Container<T, std::allocator<T> > &obj) const;
-
-        template <template <typename, typename> class Container>
-        typename Iter::reverse_iterator getRBeginIte(Container<T, Iter > &obj);
-        template <template <typename, typename> class Container>
-        typename Iter::reverse_iterator getRBeginIte(Container<T, std::allocator<T> > &obj);
-        template <template <typename, typename> class Container>
-        typename Iter::reverse_iterator getREndIte(Container<T, Iter > &obj);
-        template <template <typename, typename> class Container>
-        typename Iter::reverse_iterator getREndIte(Container<T, std::allocator<T> > &obj);
-
-        template <template <typename, typename> class Container>
-        typename Iter::const_reverse_iterator getRBeginIte(Container<T, Iter > &obj) const;
-        template <template <typename, typename> class Container>
-        typename Iter::const_reverse_iterator getRBeginIte(Container<T, std::allocator<T> > &obj) const;
-        template <template <typename, typename> class Container>
-        typename Iter::const_reverse_iterator getREndIte(Container<T, Iter > &obj) const;
-        template <template <typename, typename> class Container>
-        typename Iter::const_reverse_iterator getREndIte(Container<T, std::allocator<T> > &obj) const;
-        */
-
         template <template <typename, typename> class Container>
         void Test(Container<T, Iter > &obj);
         template <template <typename> class Container>
         void Test(Container<T> &obj);
-
-        //template <template <typename> class Container>
-        //void Test(Container<T> &obj);
-
-        //template <template <template <typename, typename> class Inter>  class Container>
-        //void Test(typename MutantStack<T , Container<Inter,  std::allocator<T> >  &obj);
-
-        //template <template <typename, typename> class Container>
-        //void Test(Container<T, Iter > &obj);
-
 
         iterator begin(void);
         iterator end(void);
@@ -153,14 +99,6 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const MutantStack<T>& stack);
 template <typename T>
 std::ostream& operator<<(std::ostream& os, MutantStack<T>& stack);
-
-/*
-template <typename T>
-std::ostream& operator<<(std::ostream& os, const typename MutantStack<T>::iterator& ite);
-template <typename T>
-std::ostream& operator<<(std::ostream& os, typename MutantStack<T>::iterator& ite);
-*/
-
 
 #include "MutantStack.tpp"
 #endif
