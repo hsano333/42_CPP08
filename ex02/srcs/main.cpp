@@ -22,6 +22,15 @@ int main(void)
         mstack.push(737);
         mstack.push(0);
         
+        MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+        MutantStack<int>::reverse_iterator rite = mstack.rend();
+        ++rit;
+        if (rit == rite)
+        {
+            cout << "False" << endl;
+        }
+        else
+            cout << "False2" << endl;
         MutantStack<int>::iterator it = mstack.begin();
         MutantStack<int>::iterator ite = mstack.end();
         ++it;
@@ -34,7 +43,6 @@ int main(void)
         std::stack<int> s(mstack);
     }
 
-        /*
     {
         cout << endl << "Test2 " << endl;
         MutantStack<int> mstack;
@@ -51,7 +59,7 @@ int main(void)
             std::cout << "ite= " << *it << endl;
         }
 
-        cout << endl << "Test2 " << endl;
+        cout << endl << "Test3 " << endl;
         MutantStack<int> mstack2 = MutantStack<int>(mstack);
         mstack2.pop();
         mstack2.pop();
@@ -70,7 +78,7 @@ int main(void)
             std::cout << "ite= " << *it << endl;
         }
 
-        cout << endl << "Test3 " << endl;
+        cout << endl << "Test4 " << endl;
         MutantStack<int> mstack3;
         mstack3 = mstack;
         mstack.pop();
@@ -89,25 +97,21 @@ int main(void)
             std::cout << "ite= " << *it << endl;
         }
     }
-    */
     {
-        cout << "Test4:list " << endl;
+        cout << "Test5:list " << endl;
         std::list<int> mstack;
         //MutantStack<int, std::list<int>, std::list<int> > mstack;
         mstack.push_back(3);
         mstack.push_back(5);
         mstack.push_back(737);
         mstack.push_back(0);
-        cout << "test2" << endl;
         
-        std::list<int>::const_iterator it = mstack.begin();
-        cout << "test3" << endl;
-        std::list<int>::const_iterator ite = mstack.end();
-        cout << "test4" << endl;
-        cout << "test3" << endl;
+        std::list<int>::const_reverse_iterator it = mstack.rbegin();
+        std::list<int>::const_reverse_iterator ite = mstack.rend();
+        //std::list<int>::const_iterator it = mstack.begin();
+        //std::list<int>::const_iterator ite = mstack.end();
         ++it;
         --it;
-        cout << "test4" << endl;
         while (it != ite)
         {
             std::cout << *it << std::endl;

@@ -14,6 +14,24 @@ template <typename T, class Iter = std::deque<T>, class Inherit = std::stack<T> 
 //template <typename T, class Iter = std::list<T>, class Inherit = std::list<T> >
 class MutantStack : public Inherit 
 {
+    private:
+        void TTest();
+        //template < template <typename, typename, typename> class Container>
+        void copys(MutantStack<T, std::deque<T>, std::stack<T> > &dst, MutantStack<T, std::deque<T>, std::stack<T> > const &src);
+
+        //template < template <typename, typename, typename> class MutantStack>
+        void copys(MutantStack<T, Iter, Iter> &dst, MutantStack<T, Iter, Iter> const &src);
+
+        void clear(MutantStack<T, std::deque<T>, std::stack<T> > &dst);
+        void clear(MutantStack<T, Iter, Iter> &dst);
+
+        /*
+        template < template <typename, typename, typename> class Container>
+        void clear(Container<T, std::deque<T>, std::stack<T> > &obj);
+
+        template < template <typename, typename, typename> class Container>
+        void clear(Container<T, Iter, Iter> &obj);
+        */
     public:
         MutantStack();
         MutantStack(const MutantStack &stack);
