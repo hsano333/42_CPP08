@@ -9,18 +9,10 @@
 
 //template <typename T, template <typename, typename> class Container>
 //template <typename T, class Iter = std::list<T, std::allocator<T> >, class Inherit = std::list<T> >
-//template <typename T, class Iter = Iter, class Inherit = std::stack<T> >
+template <typename T, class Iter = std::deque<T>, class Inherit = std::stack<T> >
 //template <typename T>
 //template <typename T, class Iter = std::list<T>, class Inherit = std::list<T> >
-//template <typename T, class Iter = std::list<T>, class Inherit = std::list<T> >
-//
-//
-
-//template <typename T, class Iter = std::list<T>, typename C=std::allocator<T>, template <class A=T, class B=std::allocator<T> > class Inherit = std::list>
-//class MutantStack : public Inherit<T>
-
-template <typename T, class Iter = std::deque<T>, typename C=std::deque<T>, template <class A=T, class B=C> class Inherit = std::stack >
-class MutantStack : public Inherit<T, C>
+class MutantStack : public Inherit 
 {
     public:
         MutantStack();
@@ -34,35 +26,39 @@ class MutantStack : public Inherit<T, C>
         typedef typename Iter::const_reverse_iterator const_reverse_iterator;
 
 
-        template < template <typename, typename, typename, typename> class Container>
-        typename Iter::iterator getBeginIte(Container<T, Iter, C ,Inherit<T,C> > &obj);
-
-        template < template <typename, typename, typename, typename> class Container>
-        typename Iter::iterator getEndIte(Container<T, Iter, Inherit<T, C> ,Inherit<T,C> > &obj);
-
-        /*
+        template < template <typename, typename, typename> class Container>
+        typename Iter::iterator getBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj);
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::iterator getBeginIte(Container<T, Iter, Inherit<T, std::allocator<T> > > &obj);
+        typename Iter::iterator getEndIte(Container<T, std::deque<T>, std::stack<T> > &obj);
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::iterator getEndIte(Container<T, Iter, Inherit<T, std::allocator<T> > > &obj);
-        */
-
-        /*
-        template < template <typename, typename, typename> class Container>
-        typename Iter::const_iterator getBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj) const;
+        typename Iter::iterator getBeginIte(Container<T, Iter, Iter> &obj);
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::const_iterator getEndIte(Container<T, std::deque<T>, std::stack<T> > &obj) const;
+        typename Iter::iterator getEndIte(Container<T, Iter, Iter> &obj);
+
+
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::const_iterator getBeginIte(Container<T, Iter, Inherit> &obj) const;
+        typename Iter::iterator getBeginIte(Container<T, std::list<T>, std::stack<T> > &obj);
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::const_iterator getEndIte(Container<T, Iter, Inherit> &obj) const;
-        */
+        typename Iter::iterator getEndIte(Container<T, std::list<T>, std::stack<T> > &obj);
 
+
+
+        template <template <typename> class Container>
+        typename Iter::iterator getBeginIte(Container<T> &obj);
+
+        template <template <typename, typename> class Container>
+        typename Iter::iterator getBeginIte(Container<T, Iter > &obj);
+        //template <template <typename> class Container>
+        //typename Iter::iterator getBeginIte(Container<T> &obj);
+        template <template <typename, typename> class Container>
+        typename Iter::iterator getEndIte(Container<T, Iter > &obj);
+        template <template <typename> class Container>
+        typename Iter::iterator getEndIte(Container<T> &obj);
 
         /*
         template <template <typename, typename> class Container>
