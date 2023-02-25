@@ -39,26 +39,43 @@ class MutantStack : public Inherit
         typename Iter::iterator getEndIte(Container<T, Iter, Iter> &obj);
 
 
+        template < template <typename, typename, typename> class Container>
+        typename Iter::const_iterator getBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj) const;
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::iterator getBeginIte(Container<T, std::list<T>, std::stack<T> > &obj);
+        typename Iter::const_iterator getEndIte(Container<T, std::deque<T>, std::stack<T> > &obj) const;
 
         template < template <typename, typename, typename> class Container>
-        typename Iter::iterator getEndIte(Container<T, std::list<T>, std::stack<T> > &obj);
+        typename Iter::const_iterator getBeginIte(Container<T, Iter, Iter> &obj) const;
+
+        template < template <typename, typename, typename> class Container>
+        typename Iter::const_iterator getEndIte(Container<T, Iter, Iter> &obj) const;
 
 
+        template < template <typename, typename, typename> class Container>
+        typename Iter::reverse_iterator getRBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj);
 
-        template <template <typename> class Container>
-        typename Iter::iterator getBeginIte(Container<T> &obj);
+        template < template <typename, typename, typename> class Container>
+        typename Iter::reverse_iterator getREndIte(Container<T, std::deque<T>, std::stack<T> > &obj);
 
-        template <template <typename, typename> class Container>
-        typename Iter::iterator getBeginIte(Container<T, Iter > &obj);
-        //template <template <typename> class Container>
-        //typename Iter::iterator getBeginIte(Container<T> &obj);
-        template <template <typename, typename> class Container>
-        typename Iter::iterator getEndIte(Container<T, Iter > &obj);
-        template <template <typename> class Container>
-        typename Iter::iterator getEndIte(Container<T> &obj);
+        template < template <typename, typename, typename> class Container>
+        typename Iter::reverse_iterator getRBeginIte(Container<T, Iter, Iter> &obj);
+
+        template < template <typename, typename, typename> class Container>
+        typename Iter::reverse_iterator getREndIte(Container<T, Iter, Iter> &obj);
+
+
+        template < template <typename, typename, typename> class Container>
+        typename Iter::const_reverse_iterator getRBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj) const;
+
+        template < template <typename, typename, typename> class Container>
+        typename Iter::const_reverse_iterator getREndIte(Container<T, std::deque<T>, std::stack<T> > &obj) const;
+
+        template < template <typename, typename, typename> class Container>
+        typename Iter::const_reverse_iterator getRBeginIte(Container<T, Iter, Iter> &obj) const;
+
+        template < template <typename, typename, typename> class Container>
+        typename Iter::const_reverse_iterator getREndIte(Container<T, Iter, Iter> &obj) const;
 
         /*
         template <template <typename, typename> class Container>
@@ -106,14 +123,12 @@ class MutantStack : public Inherit
 
         iterator begin(void);
         iterator end(void);
-        /*
-        const_iterator& begin(void) const;
-        const_iterator& end(void) const;
-        reverse_iterator& rbegin(void);
-        reverse_iterator& rend(void);
-        const_reverse_iterator& rbegin(void) const;
-        const_reverse_iterator& rend(void) const;
-        */
+        const_iterator begin(void) const;
+        const_iterator end(void) const;
+        reverse_iterator rbegin(void);
+        reverse_iterator rend(void);
+        const_reverse_iterator rbegin(void) const;
+        const_reverse_iterator rend(void) const;
 };
 
 template <typename T>
