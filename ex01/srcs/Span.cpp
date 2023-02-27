@@ -8,71 +8,116 @@
 using std::cout;
 using std::endl;
 
-void init(std::pair<int, bool> &pair)
-{
-    pair.first = 0;
-    pair.second= false;
-}
 
-Span::Span(size_t N) : pos(0)
+Span::Span(size_t N) : pos(0) , shortest(UINT_MAX)
 {
     if (N > UINT_MAX)
         throw std::invalid_argument("Span Constructor Exception: range 0 to UINT_MAX");
     this->N = N;
-    this->item = new std::vector<std::pair<int, bool> >(N);
-    for_each(this->item->begin(), this->item->end(), init);
+    this->item = new std::multiset<int>;
 }
-Span::Span() : N(0), pos(0)
+Span::Span() : N(0), pos(0) , shortest(UINT_MAX)
 {
-    this->item = new std::vector<std::pair<int, bool> >(0);
-    for_each(this->item->begin(), this->item->end(), init);
 }
 Span::~Span()
 {
     delete this->item;
 }
 
+void Span:: copy(std::multiset<int> *dst, std::multiset<int> *src) const
+{
+    std::multiset<int>::iterator ite = src->begin();
+    std::multiset<int>::iterator end_ite= src->begin();
+
+    for (; ite != end_ite; ite++)
+    {
+        dst->insert(*ite);
+    }
+}
+
 Span::Span(const Span &s)
 {
-        this->item = new std::vector<std::pair<int, bool> >(s.item->size());
-        for (unsigned long i=0; i<s.item->size();i++)
-        {
-            (*(this->item))[i] = (*(s.item))[i];
-        }
-        this->N = s.N;
-        this->pos = s.pos;
+    this->item = new std::multiset<int>;
+    copy(this->item, (s.item));
+    this->N = s.N;
+    this->pos = s.pos;
+    this->shortest = s.shortest;
 }
 
 Span& Span::operator=(const Span &s)
 {
     if (this->item != s.item)
     {
-        delete (this->item);
-        this->item = new std::vector<std::pair<int, bool> >(s.item->size());
-        for (unsigned long i=0; i<s.item->size();i++)
-            (*(this->item))[i] = (*(s.item))[i];
+        try{
+            std::multiset<int> *tmp = new std::multiset<int>;
+            copy(tmp, (s.item));
+            this->N = s.N;
+            this->pos = s.pos;
+            this->shortest = s.shortest;
+            delete (this->item);
+            this->item = tmp;
+        }catch (std::exception){
+            std::cerr << "Error: Span() Copy Assignment" << endl;
+        }
     }
-    this->N = s.N;
-    this->pos = s.pos;
     return (*this);
+}
+
+void Span::setShortest(int num)
+{
+    std::multiset<int>::iterator cur = this->item->find(num);
+    std::multiset<int>::iterator ite = cur;
+    std::multiset<int>::iterator pre;
+    std::multiset<int>::iterator next;
+    std::multiset<int>::iterator begin = this->item->begin();
+    std::multiset<int>::iterator end = this->item->end();
+    ssize_t min;
+
+    if (this->item->size() <= 2)
+        return ;
+    if (ite == begin)
+    {
+        next = ++ite;
+        min = (ssize_t)*next - *cur;
+        if (this->shortest > min)
+            this->shortest = min;
+        return ;
+    }
+    next = ++ite;
+    if (next == end)
+    {
+        --ite;
+        pre = --ite;
+        min = (ssize_t)*cur - *pre;
+        if (this->shortest > min)
+            this->shortest = min;
+        return ;
+    }
+    ite--;
+    ite--;
+    pre = ite;
+    min = std::min((ssize_t)*next - *cur, (ssize_t)*cur - *pre);
+    if (this->shortest > min)
+        this->shortest = min;
 }
 
 void Span::addNumber(int num)
 {
     if (this->pos == this->N)
         throw std::length_error("addNumber Error:excced Max size");
-    std::vector<std::pair<int, bool> >::iterator iter = this->valid_end();
-    (*iter).second= true;
-    (*iter).first = num;
+    this->item->insert(num);
+    this->setShortest(num);
     this->pos++;
 }
 
-void Span::addNumber(std::pair<int, bool> &num)
+/*
+void Span::addNumber(int&num)
 {
     this->addNumber(num.first);
 }
+*/
 
-void addRandomNumber(std::pair<int, bool>&value)
+int addRandomNumber(void)
 {
     static int random_int = 0;
     int rand_value = 0;
@@ -80,21 +125,22 @@ void addRandomNumber(std::pair<int, bool>&value)
     random_int++;
     srand((unsigned int)(time(NULL)) * random_int);
     rand_value = (int)(((int)rand() - INT_MIN )) * 2;
-    value = std::make_pair(rand_value, true);
+    return (rand_value);
 }
 
 
 void Span::addNumbers()
 {
-    std::vector<std::pair<int, bool> >::iterator begin  = this->valid_end();
-    std::vector<std::pair<int, bool> >::iterator end = this->item->end();
-    std::for_each(begin, end, addRandomNumber);
-    this->pos = this->item->size();
+    while (this->item->size() != this->N)
+    {
+        this->addNumber(addRandomNumber());
+    }
+    this->pos = this->N;
 }
 
-void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+void Span::addNumbers(std::multiset<int>::iterator begin, std::multiset<int>::iterator end)
 {
-    std::vector<int>::iterator iter;
+    std::multiset<int>::iterator iter;
     for(iter = begin; iter != end; iter++)
         this->addNumber(*iter);
 }
@@ -103,51 +149,60 @@ ssize_t Span::longestSpan()
 {
     if (this->pos < 2)
         throw std::out_of_range("longestSpan Error:Span size is lack");
-    sort(this->valid_begin(), this->valid_end());
-    std::vector<std::pair<int, bool> >::iterator end_iter = this->valid_end();
+    //sort(this->item->begin(), this->item->end());
+    std::multiset<int>::iterator end_iter = this->item->end();
     end_iter--;
-    return (static_cast<ssize_t>((*end_iter).first) - static_cast<ssize_t>((*(this->item->begin())).first));
+    return (static_cast<ssize_t>((*end_iter)) - static_cast<ssize_t>((*(this->item->begin()))));
 }
 
 ssize_t Span::shortestSpan()
 {
     if (this->pos < 2)
         throw std::out_of_range("shortestSpan Error:Span size is lack");
-    ssize_t min;
+    return (this->shortest);
+    /*
+
+    ssize_t min = UINT_MAX;
     ssize_t tmp;
 
-    sort(this->valid_begin(), this->valid_end());
-    std::vector<std::pair<int, bool> >::iterator begin_iter = this->valid_begin();
-    std::vector<std::pair<int, bool> >::iterator end_iter = this->valid_end();
-    std::vector<std::pair<int, bool> >::iterator next_iter;
+    std::multiset<int>::iterator begin_iter = this->item->begin();
+    std::multiset<int>::iterator end_iter = this->item->end();
+    std::multiset<int>::iterator next_iter;
     end_iter--;
-    for(std::vector<std::pair<int, bool> >::iterator i = begin_iter; i != end_iter; i++)
+    for(std::multiset<int>::iterator i = begin_iter; i != end_iter; i++)
     {
         next_iter = i;
         next_iter++;
-        tmp = static_cast<ssize_t>((*next_iter).first) - static_cast<ssize_t>((*i).first);
+        tmp = static_cast<ssize_t>((*next_iter)) - static_cast<ssize_t>((*i));
         if (min > tmp)
         {
             min = tmp;
         }
     }
+    if (this->shortest != min)
+    {
+        cout  << "Error shorttest" << this->shortest << ", min=" << min  << endl;
+        cout  << "Error shorttest" << endl;
+        cout  << "Error shorttest" << endl;
+        cout  << "Error shorttest" << endl;
+        cout  << "Error shorttest" << endl;
+        cout  << "Error shorttest" << endl;
+        cout  << "Error shorttest" << endl;
+        cout  << "Error shorttest" << endl;
+        exit(1);
+    }
     return (min);
+    */
 }
 
 unsigned int Span::getSize()
 {
-    unsigned long cnt = 0;
-    for(unsigned long i = 0; i< this->item->size(); i++)
-    {
-        if ((*(this->item))[i].second)
-            cnt++;
-    }
-    return (cnt);
+    return (this->pos);
 }
 
-void print(const std::pair<int, bool> &value)
+void print(const int&value)
 {
-    std::cout << value.first << std::endl;
+    std::cout << value << std::endl;
 }
 
 /*
@@ -162,75 +217,28 @@ void Span::sort_print(void)
 {
     if (this->pos == 0)
         return ;
-    try {
-        sort(this->valid_begin(), this->valid_end());
-    }catch (std::exception &e){
-        cout << e.what() << endl;
-        return ;
-    }
-    std::vector<std::pair<int, bool> >::iterator begin_iter = this->valid_begin();
-    std::vector<std::pair<int, bool> >::iterator end_iter = this->valid_end();
+    std::multiset<int>::iterator begin_iter = this->item->begin();
+    std::multiset<int>::iterator end_iter = this->item->end();
     std::for_each(begin_iter, end_iter, print);
 }
 
-std::vector<std::pair<int, bool> >::iterator Span::begin(void)
+std::multiset<int>::iterator Span::begin(void)
 {
     return (this->item->begin());
 }
 
-std::vector<std::pair<int, bool> >::iterator Span::begin(void) const
+std::multiset<int>::iterator Span::begin(void) const
 {
     return (this->item->begin());
 }
 
-std::vector<std::pair<int, bool> >::iterator Span::end(void)
+std::multiset<int>::iterator Span::end(void)
 {
     return (this->item->end());
 }
 
-std::vector<std::pair<int, bool> >::iterator Span::end(void) const
+std::multiset<int>::iterator Span::end(void) const
 {
     return (this->item->end());
 }
 
-std::vector<std::pair<int, bool> >::iterator Span::valid_begin(void)
-{
-    std::vector<std::pair<int, bool> >::iterator begin = this->item->begin();
-    std::vector<std::pair<int, bool> >::iterator end = this->item->end();
-    if (begin == end)
-        return (begin);
-    while (begin != end)
-    {
-        if ((*begin).second == true)
-            break;
-        begin++;
-    }
-    return (begin);
-}
-
-std::vector<std::pair<int, bool> >::iterator Span::valid_end(void)
-{
-    std::vector<std::pair<int, bool> >::iterator begin = this->begin();
-    std::vector<std::pair<int, bool> >::iterator end = this->end();
-    if (begin == end)
-    {
-        return (end);
-    }
-    while (begin != end)
-    {
-        --end;
-        if ((*end).second == true)
-        {
-            end++;
-            break;
-        }
-    }
-    return (end);
-}
-
-/*
-void Span::test(void)
-{
-    (*(this->item))[0].first= 1111;
-}
-*/

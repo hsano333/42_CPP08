@@ -7,6 +7,22 @@ using std::pair;
 
 int main(void)
 {
+
+    /*
+    cout << "test No.1" << endl;
+    std::multiset<int> tmp;
+    tmp.insert(1);
+    cout << "test No.2" << endl;
+    std::multiset<int>::iterator ite = tmp.begin();
+    cout << "test No.3" << endl;
+    --ite;
+    cout << "test No.4" << endl;
+    --ite;
+    cout << "test No.5" << endl;
+    --ite;
+    */
+
+
     {
         cout << "Test1" << endl;
         Span sp = Span(5);
@@ -25,21 +41,21 @@ int main(void)
 
         sp.addNumber(INT_MAX);
         sp.addNumber(12);
-        sp.addNumber(5);
+        sp.addNumber(12);
         sp.addNumber(INT_MIN);
         sp.addNumber(-12345);
         cout << "size:" << sp.getSize() << endl;
-        //std::vector<int>::iterator begin_iter  = std::next(this->item->begin(), this->pos);
-        std::vector<std::pair<int, bool> >::iterator end_iter = sp.end();
+        //std::multiset<int>::iterator begin_iter  = std::next(this->item->begin(), this->pos);
+        std::multiset<int>::iterator end_iter = sp.end();
         end_iter--;
         end_iter--;
         end_iter--;
 
-        std::vector<int> veint;
-        veint.push_back(10);
-        veint.push_back(15);
-        veint.push_back(27);
-        veint.push_back(40);
+        std::multiset<int> veint;
+        veint.insert(10);
+        veint.insert(15);
+        veint.insert(27);
+        veint.insert(40);
 
         sp.addNumbers(++veint.begin(), (--veint.end()));
         //sp.addNumbers();
@@ -117,19 +133,28 @@ int main(void)
         }
     }
     {
-        /*
         cout << endl << "Test8" << endl;
-        Span sp = Span(UINT_MAX);
+        Span sp = Span(100000);
         sp.addNumbers();
-        std::vector<std::pair<int, bool> >::iterator iter = sp.begin();
-        std::vector<std::pair<int, bool> >::iterator end_iter = sp.end();
+        std::cout << "short:" << sp.shortestSpan() << std::endl;
+        std::cout << "long:" << sp.longestSpan() << std::endl;
         size_t cnt = 0;
-        for (;iter != end_iter;iter++)
-        {
-            cnt++;
-        }
         cout << "cnt:" << cnt << endl;
-        */
+    }
+    {
+        cout << endl << "Test9" << endl;
+        int size_max = 5;
+        Span sp = Span(size_max);
+        for (int i=0; i< size_max;i++)
+        {
+            sp.addNumber((double)rand()/RAND_MAX * INT_MAX);
+            if (i>2)
+            {
+                std::cout << "short:" << sp.shortestSpan() << std::endl;
+                std::cout << "long:" << sp.longestSpan() << std::endl;
+            }
+        }
+        //sp.sort_print();
     }
     //system("leaks Span");
 }
