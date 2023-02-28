@@ -5,6 +5,10 @@ using std::cout;
 using std::endl;
 using std::pair;
 
+#include <stdio.h>
+__attribute__((destructor)) void f(void){
+    system("leaks Span");
+}
 int main(void)
 {
     {
@@ -54,12 +58,12 @@ int main(void)
 
         Span sp2 = Span(sp);
         sp2 = sp;
-        cout << endl << "Test3 sp1" << endl;
+        cout << endl << "Test3 Original sp" << endl;
         sp.sort_print();
-        cout << endl << "Test3 sp2" << endl;
+        cout << endl << "Test3 Copy Assignment sp2" << endl;
         sp2.sort_print();
 
-        cout << endl << "Test4 sp3" << endl;
+        cout << endl << "Test4 Copy Constractor sp3" << endl;
         Span sp3 = Span(3);
         sp3 = sp;
         //sp3.test();
@@ -86,11 +90,12 @@ int main(void)
         } catch (std::exception &e){
             cout << e.what() << endl;
         }
-
         try{
             std::cout << "short:" << sp5.shortestSpan() << std::endl;
         } catch (std::out_of_range &e){
-            cout << "Exception Test shortestSpan()" << endl;
+            cout << endl << "Exception Test shortestSpan()" << endl;
+            cout << e.what() << endl;
+        } catch (std::invalid_argument &e){
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;
@@ -98,13 +103,13 @@ int main(void)
         try{
             std::cout << "long:" << sp5.longestSpan() << std::endl;
         } catch (std::out_of_range &e){
-            cout << "Exception Test longestSpan()" << endl;
+            cout << endl << "Exception Test longestSpan()" << endl;
+            cout << e.what() << endl;
+        } catch (std::invalid_argument &e){
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;
         }
-
-
     }
     {
 
@@ -112,12 +117,16 @@ int main(void)
         try {
             Span sp = Span(UINT_MAX + 10u);
         } catch (std::invalid_argument &e){
-            e.what();
+            cout << e.what() << endl;
+        } catch (std::exception &e){
+            cout << e.what() << endl;
         }
         try {
             Span sp = Span(-1);
         } catch (std::invalid_argument &e){
-            e.what();
+            cout << e.what() << endl;
+        } catch (std::exception &e){
+            cout << e.what() << endl;
         }
     }
     {
