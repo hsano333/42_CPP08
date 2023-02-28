@@ -7,22 +7,6 @@ using std::pair;
 
 int main(void)
 {
-
-    /*
-    cout << "test No.1" << endl;
-    std::multiset<int> tmp;
-    tmp.insert(1);
-    cout << "test No.2" << endl;
-    std::multiset<int>::iterator ite = tmp.begin();
-    cout << "test No.3" << endl;
-    --ite;
-    cout << "test No.4" << endl;
-    --ite;
-    cout << "test No.5" << endl;
-    --ite;
-    */
-
-
     {
         cout << "Test1" << endl;
         Span sp = Span(5);
@@ -31,8 +15,8 @@ int main(void)
         sp.addNumber(17);
         sp.addNumber(9);
         sp.addNumber(11);
-        std::cout << sp.shortestSpan() << std::endl;
-        std::cout << sp.longestSpan() << std::endl;
+        std::cout << "short:" << sp.shortestSpan() << std::endl;
+        std::cout << "long:" << sp.longestSpan() << std::endl;
     }
     {
 
@@ -45,18 +29,20 @@ int main(void)
         sp.addNumber(INT_MIN);
         sp.addNumber(-12345);
         cout << "size:" << sp.getSize() << endl;
+        std::cout << "short:" << sp.shortestSpan() << std::endl;
+        std::cout << "long:" << sp.longestSpan() << std::endl;
         //std::multiset<int>::iterator begin_iter  = std::next(this->item->begin(), this->pos);
-        std::multiset<int>::iterator end_iter = sp.end();
-        end_iter--;
-        end_iter--;
-        end_iter--;
+        //
 
         std::multiset<int> veint;
         veint.insert(10);
         veint.insert(15);
-        veint.insert(27);
+        veint.insert(-27);
         veint.insert(40);
+        veint.insert(69);
+        veint.insert(-29);
 
+        cout << endl << "Test2 addNumbers:" << endl;
         sp.addNumbers(++veint.begin(), (--veint.end()));
         //sp.addNumbers();
         std::cout << "size:" << sp.getSize() << std::endl ;
@@ -68,6 +54,8 @@ int main(void)
 
         Span sp2 = Span(sp);
         sp2 = sp;
+        cout << endl << "Test3 sp1" << endl;
+        sp.sort_print();
         cout << endl << "Test3 sp2" << endl;
         sp2.sort_print();
 
@@ -156,5 +144,5 @@ int main(void)
         }
         //sp.sort_print();
     }
-    //system("leaks Span");
+    system("leaks Span");
 }

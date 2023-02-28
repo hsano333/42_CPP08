@@ -27,7 +27,7 @@ Span::~Span()
 void Span:: copy(std::multiset<int> *dst, std::multiset<int> *src) const
 {
     std::multiset<int>::iterator ite = src->begin();
-    std::multiset<int>::iterator end_ite= src->begin();
+    std::multiset<int>::iterator end_ite= src->end();
 
     for (; ite != end_ite; ite++)
     {
