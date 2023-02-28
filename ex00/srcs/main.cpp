@@ -37,6 +37,14 @@ void print(int& a)
     cout << a << endl;
 }
 
+
+/*
+#include <stdio.h>
+__attribute__((destructor)) void f(void){
+    system("leaks easy_find");
+}
+*/
+
 int main(void)
 {
     vector<int> container(10);
@@ -82,6 +90,5 @@ int main(void)
         cout << e.what() << endl;
     }
 
-    //system("leaks -q easy_find");
     return (0);
 }

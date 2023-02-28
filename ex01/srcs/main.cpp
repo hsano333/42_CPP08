@@ -5,10 +5,12 @@ using std::cout;
 using std::endl;
 using std::pair;
 
+/*
 #include <stdio.h>
 __attribute__((destructor)) void f(void){
     system("leaks Span");
 }
+*/
 int main(void)
 {
     {
@@ -153,5 +155,4 @@ int main(void)
         }
         //sp.sort_print();
     }
-    system("leaks Span");
 }

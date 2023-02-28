@@ -136,6 +136,5 @@ int main(void)
         }
         std::list<int> s(mstack);
     }
-    system("leaks Mutated_abomination");
     return 0;
 }
