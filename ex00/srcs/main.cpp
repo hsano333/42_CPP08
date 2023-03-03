@@ -3,12 +3,12 @@
 #include <map>
 #include <list>
 #include <set>
-//#include <array>
 #include <deque>
-//#include <forward_list>
 #include <queue>
+//#include <array>
+//#include <forward_list>
 #include <iostream>
-#include <typeinfo>
+//#include <typeinfo>
 //#include <multiset>
 
 using std::vector;
@@ -47,9 +47,6 @@ __attribute__((destructor)) void f(void){
 
 int main(void)
 {
-    vector<int> container(10);
-    //list<int> container(10);
-    //deque<int> container(10);
     queue<int> q_container;
     
     // C++11(not handle)
@@ -67,14 +64,22 @@ int main(void)
     q_container.push(44);
     q_container.push(45);
     q_container.push(46);
+    const queue<int> q_const_container(q_container);
 
-    cout << "init container" << endl;
+    cout << endl << "init container" << endl;
+    vector<int> container(10);
+    //list<int> container(10);
+    //deque<int> container(10);
     std::for_each(container.begin(), container.end(), insert);
     std::for_each(container.begin(), container.end(), print);
 
+    const vector<int> const_container = container;
+    //const list<int> const_container(10);
+    //const deque<int> const_container(10);
+    
 
-    int search = 43;
-    cout << "search:" << search << endl;
+    int search = 42;
+    cout << endl << "search:" << search << endl;
     try {
         easyfind(container, search);
         cout << search << " is exist in container" << endl;
@@ -87,6 +92,20 @@ int main(void)
         cout << search << " is exist in queue" << endl;
     }catch(std::exception &e) {
         cout << "Queue Container Error:not find." << endl;
+        cout << e.what() << endl;
+    }
+    try {
+        easyfind(const_container, search);
+        cout << search << " is exist in const_container" << endl;
+    }catch(std::exception &e) {
+        cout << "const Container Error:not find." << endl;
+        cout << e.what() << endl;
+    }
+    try {
+        easyfind(q_const_container, search);
+        cout << search << " is exist in const_queue" << endl;
+    }catch(std::exception &e) {
+        cout << "const Queue Container Error:not find." << endl;
         cout << e.what() << endl;
     }
 
