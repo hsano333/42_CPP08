@@ -66,8 +66,8 @@ int main(void)
         MutantStack<int> mstack2 = MutantStack<int>(mstack);
         mstack2.pop();
         mstack2.pop();
-        it = mstack.rbegin();
-        ite = mstack.rend();
+        it = mstack2.rbegin();
+        ite = mstack2.rend();
         for(; it != ite; ++it)
         {
             std::cout << "mstack2 value= " << *it << endl;
