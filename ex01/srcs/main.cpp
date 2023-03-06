@@ -73,13 +73,14 @@ int main(void)
 
         cout << endl << "Test5 sp4" << endl;
         Span *sp4 = new Span(4);
+        sp4->addNumber(42);
         sp4->addNumbers();
         sp = *sp4;
         //sp4->test();
         sp4->sort_print();
+        cout << "sp:" << endl;
         sp.sort_print();
         delete sp4;
-        sp.sort_print();
 
         cout << endl << "Test6 sp5" << endl;
         Span sp5 = Span(0);
@@ -119,6 +120,7 @@ int main(void)
         try {
             Span sp = Span(UINT_MAX + 10u);
         } catch (std::invalid_argument &e){
+            cout << endl << "Exception Test over UINT_MAX" << endl;
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;
@@ -126,6 +128,7 @@ int main(void)
         try {
             Span sp = Span(-1);
         } catch (std::invalid_argument &e){
+            cout << endl << "Exception Test minus value" << endl;
             cout << e.what() << endl;
         } catch (std::exception &e){
             cout << e.what() << endl;

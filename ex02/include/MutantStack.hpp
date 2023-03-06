@@ -8,6 +8,7 @@
 #include <climits>
 
 template <typename T, class Iter = std::deque<T>, class Inherit = std::stack<T> >
+//template <typename T, class Iter = std::list<T>, class Inherit = std::list<T> >
 class MutantStack : public Inherit 
 {
     private:
