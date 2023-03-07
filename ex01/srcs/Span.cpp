@@ -159,6 +159,8 @@ ssize_t Span::shortestSpan()
 {
     if (this->pos < 2)
         throw std::out_of_range("shortestSpan Error:Span size is lack");
+    else if (this->pos == 2)
+        return (abs(*this->item->rbegin() - *this->item->begin()));
     return (this->shortest);
     /*
 
