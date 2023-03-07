@@ -10,6 +10,9 @@
 #include <iostream>
 //#include <typeinfo>
 //#include <multiset>
+#define Container vector<int>
+//#define Container list<int>
+//#define Container deque<int>
 
 using std::vector;
 using std::multiset;
@@ -38,12 +41,11 @@ void print(int& a)
 }
 
 
-/*
 #include <stdio.h>
 __attribute__((destructor)) void f(void){
     system("leaks easy_find");
 }
-*/
+
 
 int main(void)
 {
@@ -67,43 +69,40 @@ int main(void)
     const queue<int> q_const_container(q_container);
 
     cout << endl << "init container" << endl;
-    vector<int> container(10);
-    //list<int> container(10);
-    //deque<int> container(10);
+    Container container(10);
     std::for_each(container.begin(), container.end(), insert);
     std::for_each(container.begin(), container.end(), print);
 
-    const vector<int> const_container = container;
-    //const list<int> const_container(10);
-    //const deque<int> const_container(10);
+    const Container const_container = container;
     
 
     int search = 42;
+    int pos = 0;
     cout << endl << "search:" << search << endl;
     try {
-        easyfind(container, search);
-        cout << search << " is exist in container" << endl;
+        pos = easyfind(container, search);
+        cout << search << " is exist in container.index is " << pos << endl;
     }catch(std::exception &e) {
         cout << "Container Error:not find." << endl;
         cout << e.what() << endl;
     }
     try {
-        easyfind(q_container, search);
-        cout << search << " is exist in queue" << endl;
+        pos = easyfind(q_container, search);
+        cout << search << " is exist in queue.index is " << pos << endl;
     }catch(std::exception &e) {
         cout << "Queue Container Error:not find." << endl;
         cout << e.what() << endl;
     }
     try {
-        easyfind(const_container, search);
-        cout << search << " is exist in const_container" << endl;
+        pos = easyfind(const_container, search);
+        cout << search << " is exist in const_container. index is " << pos << endl;
     }catch(std::exception &e) {
         cout << "const Container Error:not find." << endl;
         cout << e.what() << endl;
     }
     try {
-        easyfind(q_const_container, search);
-        cout << search << " is exist in const_queue" << endl;
+        pos = easyfind(q_const_container, search);
+        cout << search << " is exist in const_queue. index is " << pos << endl;
     }catch(std::exception &e) {
         cout << "const Queue Container Error:not find." << endl;
         cout << e.what() << endl;

@@ -27,6 +27,7 @@ MutantStack<T, Iter, Inherit>::~MutantStack()
 template <typename T, class Iter, class Inherit>
 void MutantStack<T, Iter, Inherit>::copys(MutantStack<T, std::deque<T>, std::stack<T> > &dst, MutantStack<T, std::deque<T>, std::stack<T> > const &src)
 {
+
     for (size_t i=0; i<src.size(); i++){
         dst.push(src.c.at(i));
     }
@@ -94,8 +95,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::iterator MutantStack<T, Iter, Inherit>::getBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj)
 {
-    if (&obj == this)
-        return (this->c.begin());
+    (void)obj;
     return (this->c.begin());
 }
 
@@ -103,8 +103,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::iterator MutantStack<T, Iter, Inherit>::getBeginIte(Container<T, Iter, Iter> &obj)
 {
-    if (&obj == this)
-        return Iter::begin();
+    (void)obj;
     return Iter::begin();
 }
 
@@ -112,16 +111,14 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::iterator MutantStack<T, Iter, Inherit>::getEndIte(Container<T, std::deque<T>, std::stack<T> > &obj)
 {
-    if (&obj == this)
-        return (this->c.end());
+    (void)obj;
     return (this->c.end());
 }
 template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::iterator MutantStack<T, Iter, Inherit>::getEndIte(Container<T, Iter, Iter> &obj)
 {
-    if (&obj == this)
-        return Iter::end();
+    (void)obj;
     return Iter::end();
 }
 
@@ -129,8 +126,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_iterator MutantStack<T, Iter, Inherit>::getBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj) const
 {
-    if (&obj == this)
-        return (this->c.begin());
+    (void)obj;
     return (this->c.begin());
 }
 
@@ -138,8 +134,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_iterator MutantStack<T, Iter, Inherit>::getBeginIte(Container<T, Iter, Iter> &obj) const
 {
-    if (&obj == this)
-        return Iter::begin();
+    (void)obj;
     return Iter::begin();
 }
 
@@ -147,16 +142,14 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_iterator MutantStack<T, Iter, Inherit>::getEndIte(Container<T, std::deque<T>, std::stack<T> > &obj) const
 {
-    if (&obj == this)
-        return (this->c.end());
+    (void)obj;
     return (this->c.end());
 }
 template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_iterator MutantStack<T, Iter, Inherit>::getEndIte(Container<T, Iter, Iter> &obj) const
 {
-    if (&obj == this)
-        return Iter::end();
+    (void)obj;
     return Iter::end();
 }
 
@@ -164,8 +157,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::reverse_iterator MutantStack<T, Iter, Inherit>::getRBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj)
 {
-    if (&obj == this)
-        return (this->c.rbegin());
+    (void)obj;
     return (this->c.rbegin());
 }
 
@@ -173,8 +165,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::reverse_iterator MutantStack<T, Iter, Inherit>::getRBeginIte(Container<T, Iter, Iter> &obj)
 {
-    if (&obj == this)
-        return Iter::rbegin();
+    (void)obj;
     return Iter::rbegin();
 }
 
@@ -182,16 +173,14 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::reverse_iterator MutantStack<T, Iter, Inherit>::getREndIte(Container<T, std::deque<T>, std::stack<T> > &obj)
 {
-    if (&obj == this)
-        return (this->c.rend());
+    (void)obj;
     return (this->c.rend());
 }
 template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::reverse_iterator MutantStack<T, Iter, Inherit>::getREndIte(Container<T, Iter, Iter> &obj)
 {
-    if (&obj == this)
-        return Iter::rend();
+    (void)obj;
     return Iter::rend();
 }
 
@@ -199,8 +188,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_reverse_iterator MutantStack<T, Iter, Inherit>::getRBeginIte(Container<T, std::deque<T>, std::stack<T> > &obj) const
 {
-    if (&obj == this)
-        return (this->c.rbegin());
+    (void)obj;
     return (this->c.rbegin());
 }
 
@@ -208,8 +196,7 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_reverse_iterator MutantStack<T, Iter, Inherit>::getRBeginIte(Container<T, Iter, Iter> &obj) const
 {
-    if (&obj == this)
-        return Iter::rbegin();
+    (void)obj;
     return Iter::rbegin();
 }
 
@@ -217,16 +204,14 @@ template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_reverse_iterator MutantStack<T, Iter, Inherit>::getREndIte(Container<T, std::deque<T>, std::stack<T> > &obj) const
 {
-    if (&obj == this)
-        return (this->c.rend());
+    (void)obj;
     return (this->c.rend());
 }
 template <typename T, class Iter, class Inherit>
 template < template <typename, typename, typename> class Container>
 typename MutantStack<T, Iter, Inherit>::const_reverse_iterator MutantStack<T, Iter, Inherit>::getREndIte(Container<T, Iter, Iter> &obj) const
 {
-    if (&obj == this)
-        return Iter::rend();
+    (void)obj;
     return Iter::rend();
 }
 

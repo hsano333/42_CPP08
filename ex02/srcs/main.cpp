@@ -7,12 +7,10 @@
 using std::cout;
 using std::endl;
 
-/*
 #include <stdio.h>
 __attribute__((destructor)) void f(void){
     system("leaks Mutated_abomination");
 }
-*/
 
 int main(void)
 {
@@ -92,8 +90,8 @@ int main(void)
     }
     {
         cout << "Test5:list " << endl;
-        std::list<int> mstack;
-        //MutantStack<int, std::list<int>, std::list<int> > mstack;
+        //std::list<int> mstack;
+        MutantStack<int, std::list<int>, std::list<int> > mstack;
         mstack.push_back(5);
         mstack.push_back(17);
         std::cout << mstack.back() << std::endl;

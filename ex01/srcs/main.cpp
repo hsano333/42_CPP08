@@ -5,22 +5,29 @@ using std::cout;
 using std::endl;
 using std::pair;
 
-/*
 #include <stdio.h>
 __attribute__((destructor)) void f(void){
     system("leaks Span");
 }
-*/
 int main(void)
 {
     {
-        cout << "Test1" << endl;
+        cout << "Test0" << endl;
         Span sp = Span(5);
         sp.addNumber(6);
         sp.addNumber(3);
         sp.addNumber(17);
         sp.addNumber(9);
         sp.addNumber(11);
+        std::cout << "short:" << sp.shortestSpan() << std::endl;
+        std::cout << "long:" << sp.longestSpan() << std::endl;
+    }
+    {
+        cout << endl << "Test1" << endl;
+        Span sp = Span(5);
+        sp.addNumber(6);
+        sp.addNumber(3);
+        cout << "size:" << sp.getSize() << endl;
         std::cout << "short:" << sp.shortestSpan() << std::endl;
         std::cout << "long:" << sp.longestSpan() << std::endl;
     }
