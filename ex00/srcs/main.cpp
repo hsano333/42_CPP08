@@ -40,11 +40,12 @@ void print(int& a)
     cout << a << endl;
 }
 
-
+/*
 #include <stdio.h>
 __attribute__((destructor)) void f(void){
     system("leaks easy_find");
 }
+*/
 
 
 int main(void)

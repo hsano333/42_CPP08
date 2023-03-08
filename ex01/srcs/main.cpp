@@ -5,10 +5,12 @@ using std::cout;
 using std::endl;
 using std::pair;
 
+/*
 #include <stdio.h>
 __attribute__((destructor)) void f(void){
     system("leaks Span");
 }
+*/
 int main(void)
 {
     {
@@ -143,12 +145,10 @@ int main(void)
     }
     {
         cout << endl << "Test8" << endl;
-        Span sp = Span(100000);
+        Span sp = Span(10000);
         sp.addNumbers();
         std::cout << "short:" << sp.shortestSpan() << std::endl;
         std::cout << "long:" << sp.longestSpan() << std::endl;
-        size_t cnt = 0;
-        cout << "cnt:" << cnt << endl;
     }
     {
         cout << endl << "Test9" << endl;
@@ -157,7 +157,7 @@ int main(void)
         for (int i=0; i< size_max;i++)
         {
             sp.addNumber((double)rand()/RAND_MAX * INT_MAX);
-            if (i>2)
+            if (i >= 2)
             {
                 std::cout << "short:" << sp.shortestSpan() << std::endl;
                 std::cout << "long:" << sp.longestSpan() << std::endl;

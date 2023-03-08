@@ -11,6 +11,7 @@ using std::endl;
 
 Span::Span(size_t N) : pos(0) , shortest(UINT_MAX)
 {
+    srand((unsigned int)(time(NULL)));
     if (N > UINT_MAX)
         throw std::invalid_argument("Span Constructor Exception: range 0 to UINT_MAX");
     this->N = N;
@@ -18,6 +19,7 @@ Span::Span(size_t N) : pos(0) , shortest(UINT_MAX)
 }
 Span::Span() : N(0), pos(0) , shortest(UINT_MAX)
 {
+    srand((unsigned int)(time(NULL)));
 }
 Span::~Span()
 {
@@ -37,6 +39,7 @@ void Span:: copy(std::multiset<int> *dst, std::multiset<int> *src) const
 
 Span::Span(const Span &s)
 {
+    srand((unsigned int)(time(NULL)));
     this->item = new std::multiset<int>;
     copy(this->item, (s.item));
     this->N = s.N;
@@ -119,11 +122,8 @@ void Span::addNumber(int&num)
 
 int addRandomNumber(void)
 {
-    static int random_int = 0;
     int rand_value = 0;
 
-    random_int++;
-    srand((unsigned int)(time(NULL)) * random_int);
     rand_value = (int)(((int)rand() - INT_MIN )) * 2;
     return (rand_value);
 }
