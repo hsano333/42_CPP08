@@ -77,7 +77,7 @@ int main(void)
     const Container const_container = container;
     
 
-    int search = 42;
+    int search = 43;
     int pos = 0;
     cout << endl << "search:" << search << endl;
     try {

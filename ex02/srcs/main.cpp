@@ -77,6 +77,7 @@ int main(void)
         MutantStack<int> mstack3;
         mstack3 = mstack;
         mstack.pop();
+        mstack.pop();
         it = mstack.rbegin();
         ite = mstack.rend();
         for(; it != ite; ++it)
@@ -85,13 +86,14 @@ int main(void)
         }
         it = mstack3.rbegin();
         ite = mstack3.rend();
+        cout << endl;
         for(; it != ite; ++it)
         {
             std::cout << "mstack3 value= " << *it << endl;
         }
     }
     {
-        cout << "Test5:list " << endl;
+        cout << endl << "Test5:list " << endl;
         //std::list<int> mstack;
         MutantStack<int, std::list<int>, std::list<int> > mstack;
         mstack.push_back(5);
